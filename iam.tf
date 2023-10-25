@@ -78,7 +78,8 @@ data "aws_iam_policy_document" "codebuild" {
       "iam:GetRole",
       "iam:ListRolePolicies",
       "iam:GetRolePolicy",
-      "iam:ListAttachedRolePolicies"
+      "iam:ListAttachedRolePolicies",
+      "iam:CreateRole"
     ]
 
     resources = ["*"]
@@ -113,7 +114,8 @@ data "aws_iam_policy_document" "codebuild" {
       module.apigw.apigw_arn,
       module.apigw.apigw_stage_arn,
       "${module.apigw.apigw_arn}/integrations/${module.apigw.apigw_integration_id}",
-      "${module.apigw.apigw_arn}/routes/${module.apigw.apigw_routes_id}"
+      "${module.apigw.apigw_arn}/routes/${module.apigw.apigw_routes_id}",
+      "arn:aws:apigateway:${var.aws_region}::*"
     ]
   }
   
@@ -173,7 +175,8 @@ data "aws_iam_policy_document" "pipeline" {
     actions = [
       "iam:PassRole",
       "iam:PutRolePolicy",
-      "iam:DeleteRolePolicy"
+      "iam:DeleteRolePolicy",
+      "iam:CreateRole"
     ]
 
     resources = ["*"]
