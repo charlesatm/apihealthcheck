@@ -8,7 +8,7 @@ terraform {
   }
 /*    backend "s3" {
 
-    bucket         	   = "kodez-terraform-tfstates" #refer to s3.tf file for the bucket name
+    bucket         	   = "kodez-tfstate-terraform" #refer to s3.tf file for the bucket name
     key              	 = "state/terraform.tfstate"
     region         	   = "us-east-2" #refer to var.tf file for the region name
     encrypt        	   = true
