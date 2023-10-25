@@ -2,7 +2,7 @@ variable "aws_region" {
   description = "AWS region for all resources."
 
   type    = string
-  default = "us-east-2"
+  default = "us-east-2" #please change the region in terraform.tf backend block as it does not support variables
 }
 
 variable "func_name" {
