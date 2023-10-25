@@ -9,7 +9,7 @@ resource "aws_codepipeline" "pipeline" {
   role_arn = "${aws_iam_role.pipeline.arn}"
 
   artifact_store {
-    location = "${var.project}-codepipeline-buckets"
+    location = "${var.project}-awscodepipeline-bucket"
     type = "S3"
   }
 
