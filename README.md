@@ -3,7 +3,7 @@
 <h2 align="center">Health Endpoint Deployment</h2>
 
   <p align="center">
-    This Project deploys a simple health endpoint platform on the AWS using Terraform as the Infrastructure as code.
+    This Project deploys a simple health endpoint platform on AWS using Terraform as the Infrastructure as code.
     <br />
 
 
@@ -115,6 +115,15 @@ Cloudwatch LogGroup ---> `Refer lambda.tf and apigateway.tf, The API gateway log
 3. Pipeline Logs
 
 - Go to AWS cloudwatch and then log-groups, You should be able to find the log-groups according to the respective service.
+
+### How to destroy the infrastructure through Terraform
+
+Since , we have used S3 as our Terraform backend, we need to migrate the state to local in order to destroy the s3 bucket used for the Terraform state. Comment out the backend block and then execute the below command
+```sh
+terraform init -migrate-state
+terraform destroy
+  ```
+
 
 [Terraform]: https://icons-for-free.com/download-icon-Terraform-1324888767860173802_16.png
 [AWS]: https://icons-for-free.com/download-icon-amazon+aws-1331550885897517282_16.png
