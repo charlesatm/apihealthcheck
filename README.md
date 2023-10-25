@@ -37,7 +37,6 @@ The Health check API has been deployed on top of AWS. We are using API Gateway  
   ```
 
 ## Folder Structure Conventions
-
     .
     ├── function                    # Contains the Nodejs Source code
     ├── modules                     # Terraform custom modules
@@ -45,7 +44,6 @@ The Health check API has been deployed on top of AWS. We are using API Gateway  
     └── README.md
     
 ## Usage
-
 
 ### How to build and deploy infra through Terraform
 
