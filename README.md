@@ -3,7 +3,7 @@
 <h2 align="center">Health Endpoint Deployment</h2>
 
   <p align="center">
-    This Project deploys a simple health endpoint platform on the AWS using Terraform as the Infrastructure as code.
+    This Project deploys a simple health endpoint platform on AWS using Terraform as the Infrastructure as code.
     <br />
 
 
@@ -47,7 +47,7 @@ The Health check API has been deployed on top of AWS. We are using API Gateway  
 
 ### How to build and deploy infra through Terraform
 
-1. Navigate to the below Github Repository and fork it to your own repository, this is because AWS Codepipeline needs oauth access and only the owner of the particular repo can provide it.
+1. Navigate to the below Github Repository and fork it to your own repository, this is because AWS Codepipeline needs OAuth access and only the owner of the particular repo can provide it.
  ```sh
   https://github.com/charlesatm/apihealthcheck
   ```
@@ -63,7 +63,7 @@ export AWS_ACCESS_KEY_ID="xxxxxxxx"
 export AWS_SECRET_ACCESS_KEY="xxxxxxxxx"
   ```
 
-4. Change the variables.tf file accordingly. This also contains local values specific to your repo so please replace them with your github username and repo names.
+4. Change the variables.tf file accordingly. This also contains local values specific to your repo so please replace them with your GitHub username and repo names.
 
 5. Then, We can Plan and Apply the changes to Terraform
 ```sh
@@ -71,7 +71,7 @@ terraform plan
 terraform apply
   ```
 
-6. Once the apply is completed succesfully, We should be able to access the health check endpoint with the below command
+6. Once the apply is completed successfully, We should be able to access the health check endpoint with the below command
 ```sh
 curl "$(terraform output -raw base_url)/status"
   ```
@@ -81,19 +81,19 @@ curl "$(terraform output -raw base_url)/status"
 terraform init
 terraform apply
   ```
-8. Github account should be connected with AWS to enable the Pipeline process, this a manual one time change and unfortunately Terraform cannot do it. To connect your repo with AWS codepipeline go to AWS codepipeline https://console.aws.amazon.com/codesuite/home and click on settings and then connections. There will be a pending connection, update the pending connection by connecting your github acccount with AWS. Unless and until this is completed, the pipeline won't be triggered by the version control.
+8. The GitHub account should be connected with AWS to enable the Pipeline process, this is a manual one-time change and unfortunately Terraform cannot do it. To connect your repo with AWS codepipeline go to AWS codepipeline https://console.aws.amazon.com/codesuite/home and click on settings and then connections. There will be a pending connection, update the pending connection by connecting your GitHub account with AWS. Unless and until this is completed, the pipeline won't be triggered by the version control.
 
 ### Deployed Services [via Terraform]
 
-API Gateway ---> `Refer apig module and apigateway.tf file in this Repo, The module will deploy api gateway and its related dependencies. `
+API Gateway ---> `Refer apig module and apigateway.tf file in this Repo, The module will deploy API gateway and its related dependencies. `
 
-S3 ---> `Refer s3 module and s3.tf, this enables artifact storage required for CodePipeline, terraform state and lambda source code.`
+S3 ---> `Refer s3 module and s3.tf, this enables artifact storage required for CodePipeline, terraform state, and lambda source code.`
 
 CodeBuild ---> `Refer code-build.tf, This will create a codebuild project required for planning the Infrastructure through Terraform`
 
 CodeDeploy ---> `Refer code-deploy.tf, This will deploy the Infrastructure through Terraform. `
 
-CodePipeline ---> `Refer codepipeline.tf, This will create a codepipeline , Github connection and the permissions required for pipeline through IAM policy and role.`
+CodePipeline ---> `Refer codepipeline.tf, This will create a codepipeline , Github connection, and the permissions required for pipeline through IAM policy and role.`
 
 Lambda ---> `Refer lambda.tf and function.zip, This will create a Lambda function and the roles required for service execution, also, the function folder contains the nodejs code that logs the response data using console.log .`
 
@@ -115,6 +115,15 @@ Cloudwatch LogGroup ---> `Refer lambda.tf and apigateway.tf, The API gateway log
 3. Pipeline Logs
 
 - Go to AWS cloudwatch and then log-groups, You should be able to find the log-groups according to the respective service.
+
+### How to destroy the infrastructure through Terraform
+
+Since , we have used S3 as our Terraform backend, we need to migrate the state to local in order to destroy the s3 bucket used for the Terraform state. Comment out the backend block and then execute the below command
+```sh
+terraform init -migrate-state
+terraform destroy
+  ```
+
 
 [Terraform]: https://icons-for-free.com/download-icon-Terraform-1324888767860173802_16.png
 [AWS]: https://icons-for-free.com/download-icon-amazon+aws-1331550885897517282_16.png
