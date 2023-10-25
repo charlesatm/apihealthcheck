@@ -98,7 +98,8 @@ data "aws_iam_policy_document" "codebuild" {
     ]
 
     resources = [
-      aws_codestarconnections_connection.connect.arn
+      aws_codestarconnections_connection.connect.arn,
+      "arn:aws:codestar-connections:${var.aws_region}:*"
     ]
   }
 
