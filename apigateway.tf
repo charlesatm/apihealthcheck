@@ -2,7 +2,7 @@ module "apigw" {
   source                      = "./modules/apigw"
   apigw_name                  = "apigw_lambda"
   apigw_protocol              = "HTTP"
-  apigw_stage_name            = "apigw_lambda_stage"
+  apigw_stage_name            = "health_check"
   apigw_auto_deployment       = true
   apigw_integration_uri       = module.lambda.function_arn
   apigw_integration_type      = "AWS_PROXY"
