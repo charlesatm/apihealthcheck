@@ -1,4 +1,4 @@
-resource "aws_lambda_function" "hello_world" {
+resource "aws_lambda_function" "healthcheck" {
   function_name = var.lambda_func_name
 
   s3_bucket = var.s3_bucket_id
@@ -12,7 +12,7 @@ resource "aws_lambda_function" "hello_world" {
   role = aws_iam_role.lambda_exec.arn
 }
 
-resource "aws_cloudwatch_log_group" "hello_world" {
+resource "aws_cloudwatch_log_group" "healthcheck" {
   name = var.cloudwatch_log
 
   retention_in_days = var.cloudwatch_log_retention

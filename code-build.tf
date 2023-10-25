@@ -1,6 +1,6 @@
 resource "aws_codebuild_project" "terraformplan" {
   name         = "${var.project}-plan-codebuild"
-  description  = "Codebuild for the ECS Green/Blue ${var.project}status app"
+  description  = "Terraform plan through CodeBuild"
   service_role = "${aws_iam_role.codebuild.arn}"
 
   artifacts {
@@ -22,7 +22,7 @@ resource "aws_codebuild_project" "terraformplan" {
 
 resource "aws_codebuild_project" "terraformapply" {
   name         = "${var.project}-apply-codebuild"
-  description  = "Codebuild for the ECS Green/Blue ${var.project}status app"
+  description  = "Terraform Apply through CodeBuild"
   service_role = "${aws_iam_role.codebuild.arn}"
 
   artifacts {

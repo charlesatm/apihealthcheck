@@ -51,7 +51,7 @@ The Health check API has been deployed on top of AWS. We are using API Gateway  
 
 1. Navigate to the below Github Repository and fork it to your own repository, this is because AWS Codepipeline needs oauth access and only the owner of the particular repo can provide it.
  ```sh
-  https://github.com/charlesatm/
+  https://github.com/charlesatm/apihealthcheck
   ```
 
 2.  Clone the forked repo to your local and Initialise the Terraform module

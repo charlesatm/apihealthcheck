@@ -6,22 +6,22 @@ variable "aws_region" {
 }
 
 variable "func_name" {
-  description = "AWS region for all resources."
+  description = "Name of the Lambda function"
 
   type    = string
-  default = "status"
+  default = "apihealthcheck"
 }
 
 variable "project" {
-  description = "AWS region for all resources."
+  description = "Project Name"
 
   type    = string
   default = "kodez"
 }
 
-
+#Config related to the Github repository
 locals {
   github_owner = "charlesatm"
-  github_repo = "testendpoint"
+  github_repo = "apihealthcheck"
   github_branch = "main"
 }

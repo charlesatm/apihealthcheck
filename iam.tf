@@ -219,5 +219,3 @@ resource "aws_iam_role_policy" "pipeline" {
   role = "${aws_iam_role.pipeline.name}"
   policy = "${data.aws_iam_policy_document.pipeline.json}"
 }
-
-
